@@ -1,12 +1,5 @@
 import { useState } from "react";
-
-const albumCardStyle = {
-  height: "400px",
-  width: "300px",
-  display: "inline-block",
-  margin: "1%",
-  boxSizing: "border-box",
-};
+import SearchedAlbum from "./SearchedAlbum";
 
 const cardContianerStyle = {
   display: "flex",
@@ -95,12 +88,20 @@ const SearchSpotify = () => {
         <div style={cardContianerStyle}>
           {searchResults.map((album) => {
             return (
-              <div key={album.id} style={albumCardStyle}>
-                <h3>{album.name}</h3>
-                <h5>Artist: {album.artists[0].name}</h5>
-                <img alt={album.name} src={album.images[1].url} />
-              </div>
+              <SearchedAlbum
+                key={album.id}
+                title={album.name}
+                artist={album.artists[0].name}
+                cover={album.images[1].url}
+              />
             );
+            // return (
+            // //   <div key={album.id} style={albumCardStyle}>
+            // //     <h3>{album.name}</h3>
+            // //     <h5>Artist: {album.artists[0].name}</h5>
+            // //     <img alt={album.name} src={album.images[1].url} />
+            // //   </div>
+            // );
           })}
         </div>
       )}
