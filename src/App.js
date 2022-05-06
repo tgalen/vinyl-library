@@ -4,10 +4,15 @@ const albumCardStyle = {
   height: "400px",
   width: "300px",
   display: "inline-block",
+  margin: "1%",
 };
 
-const cardContianeStyle = {
-  display: "block",
+const cardContianerStyle = {
+  display: "flex",
+  flexWrap: "wrap",
+  width: "80%",
+  textAlign: "center",
+  margin: "auto",
 };
 
 function App() {
@@ -59,7 +64,7 @@ function App() {
         throw response;
       })
       .then((data) => {
-        setSearchResults(data.albums.items);
+        setSearchResults(data.albums.items); // array of albums
         console.log(data);
       })
       .catch((error) => console.log(error));
@@ -82,15 +87,24 @@ function App() {
       <button onClick={handleSearch}>Search</button>
 
       {searchResults && (
-        <div style={cardContianeStyle}>
-          <div style={albumCardStyle}>
+        <div style={cardContianerStyle}>
+          {/* <div style={albumCardStyle}>
             <h3>{searchResults[0].name}</h3>
             <h5>Artist: {searchResults[0].artists[0].name}</h5>
             <img
               alt={searchResults[0].name}
               src={searchResults[0].images[1].url}
             />
-          </div>
+          </div> */}
+          {searchResults.map((album) => {
+            return (
+              <div style={albumCardStyle}>
+                <h3>{album.name}</h3>
+                <h5>Artist: {album.artists[0].name}</h5>
+                <img alt={album.name} src={album.images[1].url} />
+              </div>
+            );
+          })}
         </div>
       )}
     </div>
