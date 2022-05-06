@@ -1,10 +1,12 @@
 import { useState } from "react";
+import Header from "./components/Header";
 
 const albumCardStyle = {
   height: "400px",
   width: "300px",
   display: "inline-block",
   margin: "1%",
+  boxSizing: "border-box",
 };
 
 const cardContianerStyle = {
@@ -72,7 +74,7 @@ function App() {
 
   return (
     <div>
-      <h1>Album Library</h1>
+      <Header />
       <button onClick={handleAuthorize}>Authorize</button>
       <h5>{window.location.hash}</h5>
       <h5>{token}</h5>
