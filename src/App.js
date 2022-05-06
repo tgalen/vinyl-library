@@ -70,8 +70,6 @@ function App() {
       .catch((error) => console.log(error));
   };
 
-  console.log(searchResults);
-
   return (
     <div>
       <h1>Album Library</h1>
@@ -98,7 +96,7 @@ function App() {
           </div> */}
           {searchResults.map((album) => {
             return (
-              <div style={albumCardStyle}>
+              <div key={album.id} style={albumCardStyle}>
                 <h3>{album.name}</h3>
                 <h5>Artist: {album.artists[0].name}</h5>
                 <img alt={album.name} src={album.images[1].url} />
