@@ -16,7 +16,7 @@ const authorizeBtnStyle = {
   margin: "10px",
 };
 
-const SearchSpotify = () => {
+const SearchSpotify = ({ collection, setCollection }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState(null);
   const SEARCH_ENDPOINT = "https://api.spotify.com/v1/search";
@@ -61,6 +61,7 @@ const SearchSpotify = () => {
     fetch(`${SEARCH_ENDPOINT}?q=${searchTerm}&type=album`, authOptions)
       .then((response) => {
         if (response.ok) {
+          console.log(response);
           return response.json();
         }
         throw response;
@@ -88,20 +89,15 @@ const SearchSpotify = () => {
         <div style={cardContianerStyle}>
           {searchResults.map((album) => {
             return (
-              <SearchedAlbum
-                key={album.id}
-                title={album.name}
-                artist={album.artists[0].name}
-                cover={album.images[1].url}
-              />
+              <div>
+                <SearchedAlbum
+                  key={album.id}
+                  info={album}
+                  collection={collection}
+                  setCollection={setCollection}
+                />
+              </div>
             );
-            // return (
-            // //   <div key={album.id} style={albumCardStyle}>
-            // //     <h3>{album.name}</h3>
-            // //     <h5>Artist: {album.artists[0].name}</h5>
-            // //     <img alt={album.name} src={album.images[1].url} />
-            // //   </div>
-            // );
           })}
         </div>
       )}

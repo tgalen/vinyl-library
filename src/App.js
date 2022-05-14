@@ -9,7 +9,7 @@ function App() {
   return (
     <div>
       <Header />
-      <Collection collection={collection} setCollection={setCollection} />
+      <Collection collection={collection} />
       <SearchSpotify collection={collection} setCollection={setCollection} />
     </div>
   );
