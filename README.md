@@ -1,1 +1,1 @@
-A web app to track my vinyl collection
+A front end web app to track my vinyl collection
